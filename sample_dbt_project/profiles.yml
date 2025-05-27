@@ -1,0 +1,11 @@
+default: # This matches the profile name in dbt_project.yml
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ':memory:' # You can also specify a file path e.g., 'mydatabase.duckdb'
+      # For file-based DuckDB, you might want to use an absolute path or one relative
+      # to a known location within the container, e.g., /workspaces/your_project_name/mydatabase.duckdb
+      # extensions:
+      #   - httpfs
+      #   - parquet
