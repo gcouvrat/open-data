@@ -1,0 +1,24 @@
+bordeaux_piscine_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: '../bordeaux_piscine.duckdb' # database file will be created one level up from the project dir
+      # extensions:
+      #   - httpfs # For reading remote parquet files if needed in future
+      #   - parquet # For reading parquet files
+      # DuckDB usually auto-loads parquet extension when read_parquet is called.
+      # Explicitly listing extensions can be useful for clarity or specific needs.
+      # For now, we'll rely on auto-loading for the local parquet file.
+      # If dbt run fails due to missing extension, we can add them here.
+      # Also ensuring the project name matches what's in dbt_project.yml
+config:
+  # Tell dbt to look for profiles.yml in the project directory first
+  # This is not standard dbt behavior, dbt looks in ~/.dbt/ by default
+  # However, for sandboxed environments, this is a common workaround.
+  # Actually, dbt CLI will automatically pick up a profiles.yml in the current directory
+  # if --profiles-dir is not specified and ~/.dbt/profiles.yml doesn't exist or is not relevant.
+  # For this task, placing it in the project root should be fine.
+  # The profile name 'bordeaux_piscine_dbt' must match the 'name' in dbt_project.yml
+  send_anonymous_usage_stats: False # Optional: disable anonymous usage stats
+  use_colors: True # Optional: enable colors in output

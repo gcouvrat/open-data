@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: dim_piscine_attendance_cleaned
+    description: "Cleaned and standardized swimming pool attendance data. Columns are renamed for clarity, and data types are conformed. This model serves as an intermediate step before aggregation."
+    columns:
+      - name: establishment_name
+        description: "Renamed from etablissement_etalib. The name of the swimming pool."
+        tests:
+          - not_null
+      - name: zone_name
+        description: "Renamed from fmizonlib. The specific zone within the pool."
+        tests:
+          - not_null
+      - name: zone_number
+        description: "Renamed from fmizonnum. A numerical identifier for the zone, cast to INTEGER."
+      - name: zone_max_capacity
+        description: "Renamed from fmizonmax. The maximum occupancy capacity for this zone, cast to INTEGER."
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: updated_at
+        description: "Renamed from datemiseajour. The timestamp when the data was updated, cast to TIMESTAMP."
+        tests:
+          - not_null
+      - name: entries_count
+        description: "Renamed from entree. The number of entries recorded, cast to INTEGER."
+      - name: exits_count
+        description: "Renamed from sortie. The number of exits recorded, cast to INTEGER."
+      - name: current_occupancy
+        description: "Renamed from fmicourante. The current number of people in the zone, cast to INTEGER."
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
