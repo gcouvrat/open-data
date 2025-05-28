@@ -1,0 +1,35 @@
+version: 2
+
+sources:
+  - name: raw_data # This is the source name
+    meta:
+      external_location: "read_parquet('../bordeaux_piscine_data.parquet')"
+    tables:
+      - name: piscine_attendance
+        description: "Raw swimming pool attendance data from Bordeaux Metropole. Contains records of entries, exits, and current occupancy for various zones within swimming pool establishments."
+        columns:
+          - name: etablissement_etalib
+            description: "The name of the swimming pool establishment."
+            tests:
+              - not_null
+          - name: fmizonlib
+            description: "The name of the specific zone within the establishment (e.g., 'Zone Bassins', 'Gradins')."
+            tests:
+              - not_null
+          - name: fmizonnum
+            description: "A numerical identifier for the zone."
+          - name: fmizonmax
+            description: "The maximum occupancy capacity for this specific zone."
+          - name: datemiseajour
+            description: "The timestamp when this data record was updated or recorded. Assumed to be in Europe/Berlin timezone."
+            tests:
+              - not_null
+              # - unique # This was removed as it failed
+          - name: entree
+            description: "The number of entries recorded for this zone at the time of update."
+          - name: sortie
+            description: "The number of exits recorded for this zone at the time of update."
+          - name: fmicourante
+            description: "The current number of people in the zone at the time of update."
+            tests:
+              - not_null

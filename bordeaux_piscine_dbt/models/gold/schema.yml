@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: fact_hourly_occupancy
+    description: "Aggregated hourly occupancy metrics for each swimming pool establishment and zone. Provides average and maximum occupancy for each hour on each reporting date."
+    columns:
+      - name: establishment_name
+        description: "The name of the swimming pool establishment."
+        tests:
+          - not_null
+      - name: zone_name
+        description: "The specific zone within the pool for which metrics are reported."
+        # No explicit not_null test here, assuming it's covered by grouping logic
+        # or can be null if not applicable to an establishment-level aggregation (though current model groups by zone_name)
+      - name: reporting_date
+        description: "The date (extracted from updated_at) for which the occupancy metrics are reported."
+        tests:
+          - not_null
+      - name: reporting_hour
+        description: "The hour (extracted from updated_at) for which the occupancy metrics are reported."
+        tests:
+          - not_null
+      - name: avg_hourly_occupancy
+        description: "The average calculated current_occupancy for that establishment, zone, date, and hour."
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+      - name: max_hourly_occupancy
+        description: "The maximum observed current_occupancy for that establishment, zone, date, and hour."
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
