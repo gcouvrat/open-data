@@ -8,6 +8,10 @@
     "sources": "evidence sources",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@evidence-dev/evidence": "latest",
+    "@evidence-dev/duckdb": "latest",
+    "@evidence-dev/preprocess": "latest"
+  },
   "devDependencies": {}
 }
