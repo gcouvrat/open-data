@@ -9,9 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@evidence-dev/evidence": "latest",
-    "@evidence-dev/duckdb": "latest",
-    "@evidence-dev/preprocess": "latest"
+    "@evidence-dev/evidence": "^39.1.3",
+    "@evidence-dev/duckdb": "^1.0.11",
+    "@evidence-dev/core-components": "^4.7.4"
   },
   "devDependencies": {}
 }
