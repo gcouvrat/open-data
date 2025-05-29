@@ -1,3 +1,4 @@
 deployment:
   basePath: /open-data
-plugins: {}
+plugins:
+  - "@evidence-dev/duckdb"
