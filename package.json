@@ -13,5 +13,6 @@
     "@evidence-dev/duckdb": "^1.0.11",
     "@evidence-dev/core-components": "^4.7.4"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "type": "module"
 }
