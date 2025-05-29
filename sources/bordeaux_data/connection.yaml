@@ -1,0 +1,4 @@
+name: bordeaux_data
+type: duckdb
+options:
+  filename: ../../bordeaux_piscine.duckdb

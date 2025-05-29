@@ -1,0 +1,13 @@
+{
+  "name": "my-evidence-project",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "EVIDENCE_BUILD_DIR=./build/open-data evidence build",
+    "build:strict": "evidence build:strict",
+    "dev": "evidence dev",
+    "sources": "evidence sources",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
